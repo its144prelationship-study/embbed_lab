@@ -16,7 +16,6 @@ interface DataSensorType {
   Temperature: number;
 }
 function ShowData({ datatype }: Data_props) {
-  var click = 0;
   const [unitState, setUnitState] = useState("celcius");
   const [dataSensor, setDataSensor] = useState<DataSensorType>({
     Dust: 0,
@@ -29,16 +28,20 @@ function ShowData({ datatype }: Data_props) {
     const dataRef = ref(db, "data");
     onValue(dataRef, (snapShot) => {
       setDataSensor({ ...snapShot.val() });
+      setUnitState("celcius");
       setNewTemp(snapShot.val().Temperature);
-      setNewFeel(snapShot.val().Temperature);
+      setNewFeel(
+        Number(
+          HeatIndex(
+            convertCtoF(snapShot.val().Temperature),
+            snapShot.val().Humidity
+          )
+        )
+      );
+      console.log(rt_feel);
     });
   }, []);
 
-  useEffect(() => {
-    console.log("hello");
-    console.log(rt_feel);
-    console.log(rt_temp);
-  }, [unitState]);
   function initTemp() {
     // let rt_temp = 37;
     return (
@@ -53,10 +56,13 @@ function ShowData({ datatype }: Data_props) {
             }
             onClick={() => {
               if (unitState === "fahrenheit") {
-                setNewTemp(convertFtoC(rt_temp));
-                setNewFeel(convertFtoC(rt_feel));
+                const newTemp = convertFtoC(rt_temp);
+                const newFeel = convertFtoC(rt_feel);
+                setNewTemp(newTemp);
+                setNewFeel(newFeel);
               }
               setUnitState("celcius");
+              initFeelsLike();
             }}
           >
             C
@@ -70,10 +76,13 @@ function ShowData({ datatype }: Data_props) {
             }
             onClick={() => {
               if (unitState === "celcius") {
-                setNewTemp(convertCtoF(rt_temp));
-                setNewFeel(convertCtoF(rt_feel));
+                const newTemp = convertCtoF(rt_temp);
+                const newFeel = convertCtoF(rt_feel);
+                setNewTemp(newTemp);
+                setNewFeel(newFeel);
               }
               setUnitState("fahrenheit");
+              initFeelsLike();
             }}
           >
             F
@@ -83,7 +92,6 @@ function ShowData({ datatype }: Data_props) {
     );
   }
   function initHumidity() {
-    let rt_hu = 74;
     return (
       <button className="humidity-pie">
         <p className="hu-text">{dataSensor.Humidity}</p>
@@ -92,7 +100,6 @@ function ShowData({ datatype }: Data_props) {
     );
   }
   function initPM() {
-    let rt_pm = 121;
     return (
       <button className="pm-pie">
         <p className="pm-text">{(dataSensor.Dust * 1000).toFixed(1)}</p>
@@ -113,11 +120,12 @@ function ShowData({ datatype }: Data_props) {
             }
             onClick={() => {
               if (unitState === "fahrenheit") {
-                setNewTemp(convertFtoC(rt_temp));
-                setNewFeel(convertFtoC(rt_feel));
+                const newTemp = convertFtoC(rt_temp);
+                const newFeel = convertFtoC(rt_feel);
+                setNewTemp(newTemp);
+                setNewFeel(newFeel);
               }
               setUnitState("celcius");
-              initTemp();
             }}
           >
             C
@@ -131,11 +139,12 @@ function ShowData({ datatype }: Data_props) {
             }
             onClick={() => {
               if (unitState === "celcius") {
-                setNewTemp(convertCtoF(rt_temp));
-                setNewFeel(convertCtoF(rt_feel));
+                const newTemp = convertCtoF(rt_temp);
+                const newFeel = convertCtoF(rt_feel);
+                setNewTemp(newTemp);
+                setNewFeel(newFeel);
               }
               setUnitState("fahrenheit");
-              initTemp();
             }}
           >
             F
@@ -150,6 +159,25 @@ function ShowData({ datatype }: Data_props) {
   }
   function convertFtoC(f: number) {
     return Number(((f - 32) * (5 / 9)).toFixed(1));
+  }
+  function HeatIndex(T: number, rh: number) {
+    let C1 = [
+      -42.379, 2.04901523, 10.14333127, -0.22475541, -6.83783e-3, -5.481717e-2,
+      1.22874e-3, 8.5282e-4, -1.99e-6,
+    ];
+    let H2 = rh * rh;
+    let T2 = T * T;
+    let heatindex1 =
+      C1[0] +
+      C1[1] * T +
+      C1[2] * rh +
+      C1[3] * T * rh +
+      C1[4] * T2 +
+      C1[5] * H2 +
+      C1[6] * T2 * rh +
+      C1[7] * T * H2 +
+      C1[8] * T2 * H2;
+    return convertFtoC(heatindex1).toFixed(1);
   }
   return (
     <>
