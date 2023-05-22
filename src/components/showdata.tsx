@@ -11,8 +11,8 @@ interface Data_props {
 
 function ShowData({ datatype }: Data_props) {
   const [unitState, setUniteState] = useState("celcius");
-  const [rt_temp, setNewTemp] = useState(37);
-  const [rt_feel, setNewFeel] = useState(37);
+  const [rt_temp, setNewTemp] = useState(37.2);
+  const [rt_feel, setNewFeel] = useState(37.5);
   function initTemp() {
     // let rt_temp = 37;
     return (
@@ -27,8 +27,10 @@ function ShowData({ datatype }: Data_props) {
             }
             onClick={() => {
               if(unitState === "fahrenheit"){
+                // console.log(rt_temp, rt_feel,unitState);
                 setNewTemp(convertFtoC(rt_temp));
                 setNewFeel(convertFtoC(rt_feel));
+                // console.log(rt_temp, rt_feel,unitState);
               }
               setUniteState("celcius");
               initFeelsLike();
@@ -125,10 +127,10 @@ function ShowData({ datatype }: Data_props) {
   }
 
   function convertCtoF(celcius: number) {
-    return (celcius * (9 / 5) + 32).toFixed(1);
+    return Number((celcius * (9 / 5) + 32).toFixed(1));
   }
   function convertFtoC(f:number){
-    return ((f-32)*(5/9)).toFixed(1);
+    return Number(((f-32)*(5/9)).toFixed(1));
   }
   return (
     <>

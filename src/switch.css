@@ -1,37 +1,60 @@
+.circlehome1{
+    background-image: url(./components/circle-home1.png);
+    width: 180px;
+    height: 180px;
+    position: absolute;
+    margin-left: -0.25%;
+    margin-top: 12.5%;
+}
+.circlehome2{
+    background-image: url(./components/circle-home2.png);
+    width: 180px;
+    height: 180px;
+    position: absolute;
+    margin-left: -0.25%;
+    margin-top: 12.5%;
+}
+.circlehome3{
+    background-image: url(./components/circle-home3.png);
+    width: 180px;
+    height: 180px;
+    position: absolute;
+    margin-left: -0.25%;
+    margin-top: 12.5%;
+}
 .red-switch{
-    width: 300px;
-    height: 300px;
-    border-radius: 50%;
-    background-color: #F86262;
+    width: 150px;
+    height: 150px;
+    background-image: url(./components/red-switch.png);
     align-content: center;
     justify-content: center;
     padding: 0%;
-    border-width: 30px;
-    border-color: white;
-    /* margin-left: 41.5%; */
-    margin-top: 18%;
+    margin-left: -0.25%;
+    margin-top: 13.5%;
     position: absolute;
-    border-style: solid;
+    border: 0px;
+    background-color: #ade76600;
+    border-radius: 75px;
 }
 .green-switch{
-    width: 300px;
-    height: 300px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
-    background-color: #AEE766;
+    background-image: url(./components/green-switch.png);
     align-content: center;
     justify-content: center;
     padding: 0%;
-    border-width: 30px;
-    border-color: white;
-    /* margin-left: 41.5%; */
-    margin-top: 18%;
+    margin-left: -0.25%;
+    margin-top: 13.5%;
     position: absolute;
-    border-style: solid;
+    border: 0px;
+    background-color: #ade76600;
+    border-radius: 75px;
 }
 
 .red-switch:hover{
-    background-color: #c03c3c;
+    background-image: url(./components/red-switch-hover.png);
 }
 .green-switch:hover{
-    background-color: #7aa447;
+    background-image: url(./components/green-switch-hover.png);
 }
