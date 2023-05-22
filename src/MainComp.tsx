@@ -1,4 +1,5 @@
 import './font.css'
+import { useState, useEffect } from 'react';
 
 const weekday = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
 const month = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
@@ -12,9 +13,10 @@ const DateStyle = {
       fontFamily: 'Nunito',
       fontStyle: 'italic',
       fontWeight: 600,
-      fontSize: 58,
+      fontSize: 64,
       color: '#58B4AE',
-      textShadow: '3px 4px 1px rgba(88, 180, 174, 0.26)'
+      textShadow: '3px 4px 1px rgba(88, 180, 174, 0.26)',
+      paddingTop: '2%'
 };
 const TimeStyle = {
       fontFamily: 'Nunito',
@@ -22,7 +24,8 @@ const TimeStyle = {
       fontSize: 40,
       letterSpacing: '0.15em',
       display: 'flex',
-      justifyContent: 'center'
+      justifyContent: 'center',
+      marginBottom: '1%'
 };
 
 const TimeNumb = {
@@ -42,18 +45,29 @@ const TimeColon = {
       paddingButtom: '20px'
 };
 
+
 function MainComp() {
-      const date = new Date();
+      const [date, setDate] = useState(new Date());
+  
+      function refreshClock() {
+            setDate(new Date());
+      }
+      useEffect(() => {
+            const timerId = setInterval(refreshClock, 1000);
+            return function cleanup() {
+                  clearInterval(timerId);
+            };
+      }, []);
       return (
             <div style={HeaddingStyle}>
                   <div style={DateStyle}>
                         {weekday[Number(date.getDay())]} {date.getDate()} {month[Number(date.getMonth())]} {date.getFullYear()}
                   </div>
                   <div style={TimeStyle}>
-                        <span style={TimeNumb}> {String(Number(date.getHours())/10)[0]} </span>
+                        <span style={TimeNumb}> {date.getHours()>9 ? String(Number(date.getHours())/10)[0] : 0} </span>
                         <span style={TimeNumb}> {Number(date.getHours())%10} </span>
                         <span style={TimeColon}> : </span>
-                        <span style={TimeNumb}> {String(Number(date.getMinutes())/10)[0]} </span>
+                        <span style={TimeNumb}> {date.getMinutes()>9 ? String(Number(date.getMinutes())/10)[0] : 0} </span>
                         <span style={TimeNumb}> {Number(date.getMinutes())%10} </span>
                   </div>
             </div>
