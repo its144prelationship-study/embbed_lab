@@ -1,0 +1,37 @@
+.red-switch{
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background-color: #F86262;
+    align-content: center;
+    justify-content: center;
+    padding: 0%;
+    border-width: 30px;
+    border-color: white;
+    /* margin-left: 41.5%; */
+    margin-top: 18%;
+    position: absolute;
+    border-style: solid;
+}
+.green-switch{
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background-color: #AEE766;
+    align-content: center;
+    justify-content: center;
+    padding: 0%;
+    border-width: 30px;
+    border-color: white;
+    /* margin-left: 41.5%; */
+    margin-top: 18%;
+    position: absolute;
+    border-style: solid;
+}
+
+.red-switch:hover{
+    background-color: #c03c3c;
+}
+.green-switch:hover{
+    background-color: #7aa447;
+}
