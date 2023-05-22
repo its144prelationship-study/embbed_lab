@@ -1,9 +1,9 @@
-import temp from "../assets/temp_pie.png";
-import humidity from "../assets/humidity_pie.png";
-import feelslike from "../assets/feelslike_pie.png";
-import pm from "../assets/pm_pie.png";
 import "../functionbar.css";
 import { useState } from "react";
+
+export var currentState = "celcius";
+export var currentTemp = 37.2;
+export var currentFeel = 37.5;
 
 interface Data_props {
   datatype: string;
@@ -27,10 +27,10 @@ function ShowData({ datatype }: Data_props) {
             }
             onClick={() => {
               if(unitState === "fahrenheit"){
-                // console.log(rt_temp, rt_feel,unitState);
+                console.log(rt_temp, rt_feel,unitState);
                 setNewTemp(convertFtoC(rt_temp));
                 setNewFeel(convertFtoC(rt_feel));
-                // console.log(rt_temp, rt_feel,unitState);
+                console.log(rt_temp, rt_feel,unitState);
               }
               setUniteState("celcius");
               initFeelsLike();

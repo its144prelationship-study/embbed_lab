@@ -1,7 +1,6 @@
-import redswitch from '../assets/red-switch.png'
-import greenswitch from '../assets/green-switch.png'
 import '../switch.css';
 import { useState } from 'react';
+import {currentState, currentFeel, currentTemp} from './showdata';
 
 function CreateSwitch() {
     const [switchState,setSwitchState] = useState(0);
@@ -25,6 +24,9 @@ function CreateSwitch() {
             <div className= {hrnow >= 5 && hrnow < 12 ? 'circlehome1' : hrnow >= 12 && hrnow < 19 ? 'circlehome2' : 'circlehome3'} />
             {switchState === 0 && RedSwitch()}
             {switchState === 1 && GreenSwitch()}
+            <div className='rh-img'/>
+            <div className= {currentState === "celcius" ? (currentFeel<15 ? 'feel-cold' : currentFeel<30 ? 'feel-happy' : 'feel-hot'): (currentFeel<59 ? 'feel-cold' : currentFeel<86 ? 'feel-happy' : 'feel-hot')} />
+            <div className='pm-img'/>
         </>
     ) 
 }

@@ -58,3 +58,51 @@
 .green-switch:hover{
     background-image: url(./components/green-switch-hover.png);
 }
+
+.rh-img {
+    background-image: url(./assets/rh_img.png);
+    position: absolute;
+    width: 114px;
+    height: 68px;
+    margin-left: -22%;
+    margin-top: 11.5%;
+}
+
+.pm-img {
+    background-image: url(./assets/pm_img.png);
+    position: absolute;
+    width: 122px;
+    height: 107px;
+    margin-left: 30%;
+    margin-top: 22%;
+}
+
+.feel-happy {
+    background-image: url(./assets/happy.png);
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background-size: contain;
+    margin-left: -32%;
+    margin-top: 22%;
+}
+
+.feel-hot {
+    background-image: url(./assets/hot.png);
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background-size: contain;
+    margin-left: -32%;
+    margin-top: 22%;
+}
+
+.feel-cold {
+    background-image: url(./assets/cold.png);
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background-size: contain;
+    margin-left: -32%;
+    margin-top: 22%;
+}
