@@ -3,10 +3,6 @@ import { useState, useEffect } from "react";
 import { getDatabase, ref, onValue, get } from "firebase/database";
 import { db } from "../firebase";
 
-export var currentState = "celcius";
-export var currentTemp = 37.2;
-export var currentFeel = 37.5;
-
 interface Data_props {
   datatype: string;
 }
@@ -16,6 +12,7 @@ interface DataSensorType {
   Temperature: number;
 }
 function ShowData({ datatype }: Data_props) {
+  var [show, setShow] = useState("none");
   const [unitState, setUnitState] = useState("celcius");
   const [dataSensor, setDataSensor] = useState<DataSensorType>({
     Dust: 0,
@@ -41,7 +38,7 @@ function ShowData({ datatype }: Data_props) {
     });
   }, []);
   useEffect(() => {
-    console.log(unitState);
+    // console.log(unitState);
     setNewFeel(rt_feel);
     setNewTemp(rt_temp);
   }, [unitState]);
@@ -49,7 +46,7 @@ function ShowData({ datatype }: Data_props) {
   function initTemp() {
     // let rt_temp = 37;
     return (
-      <button className="temp-pie">
+      <button className="temp-pie" onClick={() => setShow("Temp")}>
         <p className="temp-text">{rt_temp}°</p>
         <div className="convert-box">
           <button
@@ -97,7 +94,7 @@ function ShowData({ datatype }: Data_props) {
   }
   function initHumidity() {
     return (
-      <button className="humidity-pie">
+      <button className="humidity-pie" onClick={() => setShow("Humidity")}>
         <p className="hu-text">{dataSensor.Humidity}</p>
         <p className="unit-rh">%RH</p>
       </button>
@@ -105,7 +102,7 @@ function ShowData({ datatype }: Data_props) {
   }
   function initPM() {
     return (
-      <button className="pm-pie">
+      <button className="pm-pie" onClick={() => setShow("pm")}>
         <p className="pm-text">{(dataSensor.Dust * 1000).toFixed(1)}</p>
         <p className="unit-pm">μg/m³</p>
       </button>
@@ -113,7 +110,7 @@ function ShowData({ datatype }: Data_props) {
   }
   function initFeelsLike() {
     return (
-      <button className="feelslike-pie">
+      <button className="feelslike-pie" onClick={() => setShow("Feelslike")}>
         <p className="feel-text">{rt_feel}°</p>
         <div className="convert-box">
           <button
@@ -158,6 +155,85 @@ function ShowData({ datatype }: Data_props) {
     );
   }
 
+  const [hr, setHr] = useState(new Date().getHours());
+  
+  function refreshClock() {
+    setHr(new Date().getHours());
+  }
+  useEffect(() => {
+      const timerId = setInterval(refreshClock, 1000);
+      return function cleanup() {
+            clearInterval(timerId);
+      };
+  }, []);
+
+  function dataTemp() {
+    return (
+      <div className="dataTemp">
+        <button className="backButton" onClick={() => setShow("none")} />
+        <p className="datatopic-text">Temperature</p>
+        <div className={hr < 19 ? 
+          unitState === "celcius"
+            ? rt_temp < 15
+              ? "sun3-d"
+              : rt_temp < 30
+              ? "sun2-d"
+              : "sun1-d"
+            : rt_temp < 59
+            ? "sun3-d"
+            : rt_temp < 86
+            ? "sun2-d"
+            : "sun1-d"
+          : "night-d"}/>
+        <p className="datadetail-text">{unitState === "celcius" ? rt_temp : convertFtoC(rt_temp)}°C | {unitState === "fahrenheit" ? rt_temp : convertCtoF(rt_temp)}°F</p>
+      </div>
+    );
+  }
+
+  function datapm(){
+    return (
+      <div className="datapm">
+        <button className="backButton" onClick={() => setShow("none")} />
+        <p className="datatopic-text">Air Quality</p>
+        <div className="pm-d"/>
+        <p className="datadetail-text">{(dataSensor.Dust * 1000).toFixed(1)} μg/m³</p>
+      </div>
+    );
+  }
+
+  function dataHumidity() {
+    return (
+      <div className="dataHumidity">
+        <button className="backButton" onClick={() => setShow("none")} />
+        <p className="datatopic-text">Humidity</p>
+        <div className="humidity-d"/>
+        <p className="datadetail-text">{dataSensor.Humidity} %RH</p>
+      </div>
+    );
+  }
+
+  function dataFeelslike() {
+    return (
+      <div className="dataFeelslike">
+        <button className="backButton" onClick={() => setShow("none")} />
+        <p className="datatopic-text">Feels Like</p>
+        <div className={
+          unitState === "celcius"
+            ? rt_feel < 15
+              ? "feel-cold-d"
+              : rt_feel < 30
+              ? "feel-happy-d"
+              : "feel-hot-d"
+            : rt_feel < 59
+            ? "feel-cold-d"
+            : rt_feel < 86
+            ? "feel-happy-d"
+            : "feel-hot-d" }/>
+        <p className="datadetail-text">{unitState === "celcius" ? rt_feel : convertFtoC(rt_feel)}°C | {unitState === "fahrenheit" ? rt_feel : convertCtoF(rt_feel)}°F</p>
+      </div>
+    );
+  }
+
   function convertCtoF(celcius: number) {
     return Number((celcius * (9 / 5) + 32).toFixed(1));
   }
@@ -189,6 +265,10 @@ function ShowData({ datatype }: Data_props) {
       {datatype === "FEELSLIKE" && initFeelsLike()}
       {datatype === "PM" && initPM()}
       {datatype === "HUMIDITY" && initHumidity()}
+      {show === "Temp" && dataTemp()}
+      {show === "Humidity" && dataHumidity()}
+      {show === "pm" && datapm()}
+      {show === "Feelslike" && dataFeelslike()}
     </>
   );
 }

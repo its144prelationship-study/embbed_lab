@@ -77,6 +77,43 @@
     margin-top: 22%;
 }
 
+.night {
+    background-image: url(./assets/night.png);
+    position: absolute;
+    width: 148px;
+    height: 113px;
+    background-size: contain;
+    margin-left: 25%;
+    margin-top: 0%;
+}
+.sun1 {
+    background-image: url(./assets/sun1.png);
+    position: absolute;
+    width: 124px;
+    height: 113px;
+    background-size: contain;
+    margin-left: 25%;
+    margin-top: 0%;
+}
+.sun2 {
+    background-image: url(./assets/sun2.png);
+    position: absolute;
+    width: 164px;
+    height: 113px;
+    background-size: contain;
+    margin-left: 25%;
+    margin-top: 0%;
+}
+.sun3 {
+    background-image: url(./assets/sun3.png);
+    position: absolute;
+    width: 150px;
+    height: 134px;
+    background-size: contain;
+    margin-left: 28%;
+    margin-top: 0%;
+}
+
 .feel-happy {
     background-image: url(./assets/happy.png);
     position: absolute;

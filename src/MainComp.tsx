@@ -13,10 +13,10 @@ const DateStyle = {
       fontFamily: 'Nunito',
       fontStyle: 'italic',
       fontWeight: 600,
-      fontSize: 64,
+      fontSize: 58,
       color: '#58B4AE',
       textShadow: '3px 4px 1px rgba(88, 180, 174, 0.26)',
-      paddingTop: '2%'
+      // paddingTop: '2%'
 };
 const TimeStyle = {
       fontFamily: 'Nunito',
@@ -25,7 +25,7 @@ const TimeStyle = {
       letterSpacing: '0.15em',
       display: 'flex',
       justifyContent: 'center',
-      marginBottom: '1%'
+      // marginBottom: '1%'
 };
 
 const TimeNumb = {
