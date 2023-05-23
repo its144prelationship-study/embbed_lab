@@ -38,9 +38,13 @@ function ShowData({ datatype }: Data_props) {
           )
         )
       );
-      console.log(rt_feel);
     });
   }, []);
+  useEffect(() => {
+    console.log(unitState);
+    setNewFeel(rt_feel);
+    setNewTemp(rt_temp);
+  }, [unitState]);
 
   function initTemp() {
     // let rt_temp = 37;
