@@ -328,5 +328,111 @@
     margin-left: 20%;
 }
 
+@media screen and (max-width: 1250px){
+    .function-box {
+        width: 550px;
+        height: 500px;  
+        margin-left: 130px;
+    }
+    .humidity-pie{
+        width: 180px;
+        height: 180px;
+        background-image: url(./assets/humidity_180.png);
+        margin-right: 10px;
+        margin-bottom: 8px;
+    }
+    .feelslike-pie{
+        width: 180px;
+        height: 180px;
+        background-image: url(./assets/feelslike_180.png);
+        margin-top: 8px;
+        margin-right: 10px;
+    }
+    .pm-pie{
+        width: 180px;
+        height: 180px;
+        background-image: url(./assets/pm_180.png);
+        margin-left: 10px;
+        margin-top: 8px;
+    }
+    .temp-pie{
+        width: 180px;
+        height: 180px;
+        background-image: url(./assets/temp_180.png);
+        margin-bottom: 8px;
+        margin-left: 10px;
+    }
+    .humidity-pie:hover{
+        width: 200px;
+        height: 200px;
+        background-image: url(./assets/humidity-hover-200.png);
+    }
+    .feelslike-pie:hover{
+        width: 200px;
+        height: 200px;
+        background-image: url(./assets/feelslike-hover-200.png);
+    }
+    .temp-pie:hover{
+        width: 200px;
+        height: 200px;
+        background-image: url(./assets/temp-hover-200.png);
+    }
+    .pm-pie:hover{
+        width: 200px;
+        height: 200px;
+        background-image: url(./assets/pm-hover-200.png);
+    }
+    .switch-box{
+        width: 200px;
+        height: 200px;
+    }
+    .temp-text,.pm-text,.hu-text,.feel-text{
+        height: 30px;
+        font-size: 36px;
+    }
+    .hu-text,.temp-text{
+        margin-top: 5%;
+    }
+    .feel-text.pm-text{
+        margin-top: 5%;
+    }
+    .hu-text{
+        margin-left: 30%;
+    }
+    .temp-text{
+        margin-left: 20%;
+    }
+    .pm-text{
+        margin-left: 12%;
+    }
+    .feel-text{
+        margin-left: 30%;
+    }
+    .convert-box{
+        width: 50px;
+        height: 20px;
+        padding: 1%;
+    }
+    .unit-convert-active,.unit-convert-passive{
+        font-size: 24px;
+        padding: 0px;
+        margin-top: 5%;
+        width: 20px;
+    }
+    .unit-rh{
+        font-size: 18px;
+        margin-top: 2%;
+    }
+    .unit-pm{
+        font-size: 18px;
+        margin-top: 5%;
+        margin-left: 0%;
+    }
+    .dataTemp, .datapm, .dataHumidity, .dataFeelslike{
+        display: none;
+    }
+
+}
+
 
 

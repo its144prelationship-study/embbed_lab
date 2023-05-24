@@ -143,3 +143,85 @@
     margin-left: -32%;
     margin-top: 22%;
 }
+
+@media screen and (max-width: 1250px){
+    .red-switch{
+        width: 120px;
+        height: 120px;
+        margin-top: 145px;
+        background-image: url(./assets/redswitch_120.png);
+    }
+    .green-switch{
+        width: 120px;
+        height: 120px;
+        margin-top: 145px;
+        background-image: url(./assets/greenswitch_120.png);
+    }
+    .red-switch:hover{
+        background-image: url(./assets/redswitchhover_120.png);
+    }
+    .green-switch:hover{
+        background-image: url(./assets/greenswitchhover_120.png);
+    }
+    .circlehome1{
+        width: 150px;
+        height: 150px;
+        margin-top: 145px;
+        background-image: url(./components/circle-home1-150.png);
+    }
+    .circlehome2{
+        width: 150px;
+        height: 150px;
+        margin-top: 23%;
+        background-image: url(./components/circle-home2-150.png);
+    }
+    .circlehome3{
+        width: 150px;
+        height: 150px;
+        margin-top: 130px;
+        background-image: url(./components/circle-home3-150.png);
+    }
+    .rh-img{
+        width: 67px;
+        height: 40px;
+        background-image: url(./assets/rh_img1250.png);
+        margin-right: 250px;
+        margin-top: 140px;
+        margin-left: 0px;
+    }
+    .pm-img{
+        width: 67px;
+        height: 40px;
+        background-image: url(assets/pm_img1250.png);
+        margin-top: 300px;
+        margin-right: 0%;
+        margin-left: 350px;
+    }
+    .feel-happy{
+        width: 80px;
+        height: 80px;
+        background-image: url(./assets/happy-80.png);
+        margin-left: 0%;
+        margin-right: 300px;
+        margin-top: 320px;
+    }
+    .feel-cold{
+        width: 80px;
+        height: 80px;
+        background-image: url(./assets/cold-80.png);
+        margin-left: 0%;
+        margin-right: 300px;
+        margin-top: 320px;
+    }
+    .feel-hot{
+        width: 80px;
+        height: 80px;
+        background-image: url(./assets/happy-80.png);
+        margin-left: 0%;
+        margin-right: 300px;
+        margin-top: 320px;
+    }
+    .night,.sun1,.sun2,.sun3{
+        margin-left: 300px;
+    }
+}
