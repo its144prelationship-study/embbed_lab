@@ -1,4 +1,3 @@
-import './font.css'
 import { useState, useEffect } from 'react';
 
 const weekday = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
