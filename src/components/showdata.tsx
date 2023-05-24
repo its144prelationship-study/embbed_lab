@@ -1,5 +1,5 @@
 import "../functionbar.css";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { getDatabase, ref, onValue, get } from "firebase/database";
 import { db } from "../firebase";
 
@@ -12,7 +12,7 @@ interface DataSensorType {
   Temperature: number;
 }
 function ShowData({ datatype }: Data_props) {
-  var [show, setShow] = useState("none");
+  const [show, setShow] = useState("none");
   const [unitState, setUnitState] = useState("celcius");
   const [dataSensor, setDataSensor] = useState<DataSensorType>({
     Dust: 0,
@@ -167,6 +167,25 @@ function ShowData({ datatype }: Data_props) {
       };
   }, []);
 
+  useEffect(() => {
+    const closeData = (e : Event) => {
+      var target = e.target as HTMLElement;
+      // console.log(show, target.className);
+      if (target.tagName !== 'BUTTON' && target.className !== 'humidity-pie' && target.className !== 'feelslike-pie' && target.className !== 'temp-pie' && target.className !== 'pm-pie'){
+        setShow("none")
+      } 
+      // else {
+      //   if (target.className === 'humidity-pie') setShow("Humidity");
+      //   else if (target.className === 'feelslike-pie') setShow("Feelslike");
+      //   else if (target.className === 'temp-pie') setShow("Temp");
+      //   else if (target.className === 'pm-pie') setShow("pm");
+      //   else setShow("none");
+      // }
+    }
+    document.body.addEventListener('click', closeData);
+    return () => document.body.removeEventListener('click', closeData);
+}, []);
+
   function dataTemp() {
     return (
       <div className="dataTemp">
@@ -234,6 +253,17 @@ function ShowData({ datatype }: Data_props) {
     );
   }
 
+  function showAllDetail(){
+    return (
+      <>
+        {show === "Temp" && dataTemp()} 
+        {show === "Humidity" && dataHumidity()}
+        {show === "pm" && datapm()}
+        {show === "Feelslike" && dataFeelslike()}
+      </>
+    );
+  }
+
   function convertCtoF(celcius: number) {
     return Number((celcius * (9 / 5) + 32).toFixed(1));
   }
@@ -265,10 +295,7 @@ function ShowData({ datatype }: Data_props) {
       {datatype === "FEELSLIKE" && initFeelsLike()}
       {datatype === "PM" && initPM()}
       {datatype === "HUMIDITY" && initHumidity()}
-      {show === "Temp" && dataTemp()}
-      {show === "Humidity" && dataHumidity()}
-      {show === "pm" && datapm()}
-      {show === "Feelslike" && dataFeelslike()}
+      {showAllDetail()}
     </>
   );
 }

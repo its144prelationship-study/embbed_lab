@@ -7,7 +7,15 @@ export default defineConfig({
   plugins: [react(),
     VitePluginFonts({
       google: {
-        families: ['Montserrat', 'Nunito'],
+        families: [{
+          name: 'Nunito', 
+          styles: 'wght@400;600',
+        },
+        {
+          name: 'Montserrat', 
+          styles: 'wght@400;900',
+        }],
+        
       },
     }),
   ],
