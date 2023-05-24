@@ -6,16 +6,14 @@ const month = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "O
 const HeaddingStyle = {
       justifyContent: 'center'
 };
-const DateStyle = {
+var DateStyle = {
       display: 'flex',
       justifyContent: 'center',
       fontFamily: 'Nunito',
       fontStyle: 'italic',
       fontWeight: 600,
-      fontSize: 58,
+      fontSize: 52,
       color: '#58B4AE',
-      textShadow: '3px 4px 1px rgba(88, 180, 174, 0.26)',
-      // paddingTop: '2%'
 };
 const TimeStyle = {
       fontFamily: 'Nunito',
@@ -44,7 +42,6 @@ const TimeColon = {
       paddingButtom: '20px'
 };
 
-
 function MainComp() {
       const [date, setDate] = useState(new Date());
   
@@ -59,7 +56,7 @@ function MainComp() {
       }, []);
       return (
             <div style={HeaddingStyle}>
-                  <div style={DateStyle}>
+                  <div className="DateStyle" style={DateStyle}>
                         {weekday[Number(date.getDay())]} {date.getDate()} {month[Number(date.getMonth())]} {date.getFullYear()}
                   </div>
                   <div style={TimeStyle}>
